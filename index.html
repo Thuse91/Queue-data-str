@@ -1,0 +1,104 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Text: <input type="type" name="text" id="box">
+    <button type="button" onclick="add();">add</button>
+    <button type="button" onclick="del();">remove</button>
+    <button type="button" onclick="show();">show</button>
+
+
+    <div id="output"></div>
+
+    <script>
+        document.getElementById("output").innerHTML = "TEST" + "<br>";
+
+        function Queue() {
+            let count = 0;
+            let head = null;
+            let tail = null;
+            this.GetCount = function(){
+                return count;
+            }
+            this.Enqueue = function(data){
+                var node = {
+                    data:data,
+                    next:head
+                };
+            if (head === null){
+                tail == head;
+            }
+            head = node;
+
+            count++;
+
+            }
+
+
+            this.Dequeue = function (){ 
+                if (count === 0) {
+                    return null;
+                }
+                else {
+                    let current = head;
+                    let previous = null;
+
+                    while(current.next){
+                        previous = current;
+                        current = current.next;
+                    }
+                    if (count >1) {
+                        previous.next = null;
+                        tail = previous;
+                    }
+                    else {
+                        head = null;
+                        tail = null;
+                    }
+                    count--;   
+                }
+            }
+                        this.DisplayThisQueue = function(){
+                            if (head === null)
+                            {return null;}
+                            else{
+                                let arr = new Array();
+                                let current = head;
+
+                                for(let i=0; i < count;i++){
+                                    arr[i] = current.data;
+                                    current = current.next;
+                                }
+                                return arr;
+                            }
+                        }
+
+
+        }
+
+        function add(){
+            minkö.Enqueue(document.getElementById("box").value);
+            document.getElementById("output").innerHTML += minkö.DisplayThisQueue() + "<br>";
+        }
+
+        function del(){
+            minkö.Dequeue(minkö);
+            document.getElementById("output").innerHTML += minkö.DisplayThisQueue() + "<br>";
+
+        }
+            
+        function show(){
+            document.getElementById("output").innerHTML += minkö.DisplayThisQueue() + "<br>";
+        }
+
+        let minkö = new Queue();
+
+
+
+        document.getElementById("output").innerHTML = "Min kö: <br>" + minkö.DisplayThisQueue();
+    </script>
+</body>
+</html>
